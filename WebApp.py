@@ -8,15 +8,16 @@ import streamlit as st
 
 st.write(""" 
 #Diabetes Detection
-Detect if someone has diabetes using Machine Learning and Python 
+
+Detects if someone has diabetes using Machine Learning and Python 
 """)
 
 #Display image
-image = Image.open('C:/Users/U708310/PycharmProjects/WebApp-ML-python/diabetes.jpg')
+image = Image.open('usr/src/app/diabetes.jpg')
 st.image(image, caption='ML', use_column_width=True)
 
 #Get The Data
-df = pd.read_csv('C:/Users/U708310/PycharmProjects/WebApp-ML-python/diabetes.csv')
+df = pd.read_csv('usr/src/app/diabetes.csv')
 
 #Set a SubHeader
 st.subheader('Data Information:')
