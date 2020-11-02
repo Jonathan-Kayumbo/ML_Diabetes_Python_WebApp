@@ -29,7 +29,7 @@
                     image: "{{ image_id }}" 
                     imagePullPolicy: IfNotPresent
                     ports:
-                      - containerPort: 8000
+                      - containerPort: 8501
                         protocol: TCP
 
   
@@ -45,7 +45,7 @@
           spec:
             type: LoadBalancer
             ports:
-            - port: 8000
-              targetPort: 8000
+            - port: 8501
+              targetPort: 8501
             selector:
               app: diabetes-webapp
