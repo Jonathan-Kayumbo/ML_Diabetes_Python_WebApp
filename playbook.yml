@@ -1,0 +1,51 @@
+---
+ - hosts: localhost
+  #Variables
+   vars:
+     replicas: 2
+   tasks:
+   - name: Create a Deployment for Diabetes WebApp
+     k8s:
+        api_version: v1
+        namespace: default
+        definition:
+          kind: Deployment
+          metadata:
+            labels:
+              app: diabetes-webapp
+            name: diabetes-deploy
+          spec:
+            replicas: "{{ replicas }}"
+            selector:
+              matchLabels:
+                app: diabetes-webapp
+            template:
+              metadata:
+                labels:
+                  app: diabetes-webapp
+              spec:
+                containers:
+                  - name: diabetes-webapp
+                    image: "{{ image_id }}" 
+                    imagePullPolicy: IfNotPresent
+                    ports:
+                      - containerPort: 8000
+                        protocol: TCP
+
+  
+   - name: Create a Service for Diabetes webapp.
+     k8s:
+       state: present
+       definition:
+          apiVersion: v1
+          kind: Service
+          metadata:
+            name: diabetes-webapp
+            namespace: default
+          spec:
+            type: LoadBalancer
+            ports:
+            - port: 8000
+              targetPort: 8000
+            selector:
+              app: diabetes-webapp
