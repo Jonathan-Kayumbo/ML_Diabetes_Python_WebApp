@@ -13,11 +13,11 @@ Detects if someone has diabetes using Machine Learning and Python
 """)
 
 #Display image
-image = Image.open('usr/src/app/diabetes.jpg')
+image = Image.open('/usr/src/app/diabetes.jpg')
 st.image(image, caption='ML', use_column_width=True)
 
 #Get The Data
-df = pd.read_csv('usr/src/app/diabetes.csv')
+df = pd.read_csv('/usr/src/app/diabetes.csv')
 
 #Set a SubHeader
 st.subheader('Data Information:')
