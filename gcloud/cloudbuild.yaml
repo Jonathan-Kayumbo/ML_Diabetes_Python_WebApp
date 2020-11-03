@@ -1,0 +1,13 @@
+steps:
+- name: "gcr.io/cloud-builders/docker"
+  entrypoint: "bash"
+  args: ["-c", "docker login --username=jonathan8231 --password=$$PASSWORD"]
+  secretEnv: ["PASSWORD"]
+- name: "gcr.io/cloud-builders/docker"
+  args: ["build", "-t", "jonathan8231/diabetes-webapp", "."]
+images: "jonathan8231/diabetes-webapp"
+secrets:
+- kmsKeyName: "projects/dev-fest-2020-294510/locations/global/keyRings/docker-hub-registry/cryptoKeys/dockerhub"
+  secretEnv:
+    PASSWORD: "CiQANy/koR0MQiWSjcaHRCcG7+tlPoY90ZlTuKX+afx5Nc2GwCMSNgD3ybiQ9C+l+HqoD2zwmWdN
+hQmkJdBntJmkKmCvWARJI5/cAB7LZGuaJ2eubhB1cphH0jA6dw=="
